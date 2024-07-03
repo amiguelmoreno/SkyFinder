@@ -3,6 +3,9 @@ tmp/
 app/**/*.js
 app/**/*.js.map
 
+#enviroment variables
+.env
+
 # dependencies
 node_modules/
 bower_components/
