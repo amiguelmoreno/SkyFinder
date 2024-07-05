@@ -1,15 +1,32 @@
-import { Injectable } from "@angular/core";
-import { ApiService } from "./api.service";
-import { Observable } from "rxjs";
 import { Flights } from "../../types";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable, map } from "rxjs";
+import { ApiService } from "./api.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class FlightsService {
-  constructor(private apiService: ApiService) {}
+  private apiUrl = "http://localhost:3000/flights"; // URL de la API
 
-  getFlights = (url: string, params: any): Observable<Flights> => {
-    return this.apiService.get(url, params);
-  };
+  constructor(private apiService: ApiService, private http: HttpClient) {}
+
+  getOrigins(): Observable<{ origin: string }[]> {
+    return this.apiService.get<any[]>(
+      `http://localhost:3000/origins`,
+      {}
+    ); /* .pipe(
+      map((response) => {
+        return response.map((flight) => ({ origin: flight.origin }));
+      })
+    ); */
+  }
+
+  getFlights(filters: any): Observable<Flights> {
+    const options = {
+      params: filters,
+    };
+    return this.apiService.get<Flights>(this.apiUrl, options);
+  }
 }

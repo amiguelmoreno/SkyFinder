@@ -1,15 +1,33 @@
 <div class="relative">
-  <h1>Welcome to the Flight Search App</h1>
-  <!-- Agrega más contenido aquí -->
-  <h4>Basic mat-select</h4>
-  <mat-form-field class="relative mt-10">
-    <mat-label>Favorite food</mat-label>
-    <mat-select class="z-50 relative">
-      @for (flight of flights; track flight) {
-      <mat-option class="absolute top-0" [value]="flight.origin">{{
-        flight.origin
-      }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+  <div class="flex gap-6">
+    <app-passenger-selector
+      (passengersChange)="presetPassengers = $event"
+    ></app-passenger-selector>
+    <app-class-selector
+      (classChange)="selectedClass = $event"
+    ></app-class-selector>
+
+    <app-flight-type-selector
+      (flightTypeChange)="selectedFlightType = $event"
+    ></app-flight-type-selector>
+  </div>
+
+  <div class="flex gap-24">
+    <div class="flex gap-6">
+      <app-location-selector
+        label="Origin"
+        [locations]="locations"
+        (locationChange)="selectedOrigin = $event"
+      ></app-location-selector>
+      <app-location-selector
+        label="Destination"
+        [locations]="locations"
+        (locationChange)="selectedDestination = $event"
+      ></app-location-selector>
+    </div>
+
+    <datepicker-overview-example></datepicker-overview-example>
+  </div>
+
+  <app-search-button (searchClick)="searchFlights()"></app-search-button>
 </div>

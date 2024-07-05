@@ -1,0 +1,14 @@
+<mat-form-field class="w-[250px] relative items-center flex mt-10">
+  <mat-icon class="absolute top-1/2 -translate-y-1/2 left-0">
+    <span class="material-symbols-outlined">my_location</span>
+  </mat-icon>
+  <mat-label class="pl-14">{{ label }}</mat-label>
+  <mat-select class="pl-10" (selectionChange)="onLocationChange($event)">
+    <mat-option
+      *ngFor="let location of locations; trackBy: trackByLocation"
+      [value]="location.origin"
+    >
+      {{ location.origin }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

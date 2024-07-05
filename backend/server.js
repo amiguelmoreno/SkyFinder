@@ -35,6 +35,30 @@ app.get("/flights", (req, res) => {
   });
 });
 
+app.get("/origins", (req, res) => {
+  db.query("SELECT * FROM flights", (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/flights/:city", (req, res) => {
+  const city = req.params.city;
+  console.log(city);
+  const query = "SELECT * FROM flights WHERE origin = ?";
+
+  db.query(query, [city], (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

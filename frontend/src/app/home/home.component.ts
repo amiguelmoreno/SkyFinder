@@ -1,49 +1,50 @@
 import { Component } from "@angular/core";
-import { MatSelectModule } from "@angular/material/select";
-
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { FormsModule } from "@angular/forms";
+import { SharedModule } from "../shared/shared.module";
 import { FlightsService } from "../services/flights.service";
-import { Flights } from "../../types";
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { SearchService } from "../services/search.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
+  imports: [SharedModule],
   templateUrl: "./home.component.html",
 })
 export class HomeComponent {
-  foods: Food[] = [
-    { value: "steak-0", viewValue: "Steak" },
-    { value: "pizza-1", viewValue: "Pizza" },
-    { value: "tacos-2", viewValue: "Tacos" },
+  selectedFlightType: string = "round";
+  presetPassengers: string = "1";
+  selectedClass: string = "tourist";
+  selectedOrigin: string = "";
+  selectedDestination: string = "";
+
+  locations = [
+    { origin: "New York" },
+    { origin: "London" },
+    { origin: "Paris" },
   ];
 
-  flights: Flights = [];
+  constructor(
+    private flightsService: FlightsService,
+    private searchService: SearchService,
+    private router: Router
+  ) {}
 
-  constructor(private flightsService: FlightsService) {}
+  searchFlights() {
+    const criteria = {
+      flightType: this.selectedFlightType,
+      passengers: this.presetPassengers,
+      travelClass: this.selectedClass,
+      origin: this.selectedOrigin,
+      destination: this.selectedDestination,
+    };
 
-  ngOnInit(): void {
-    this.flightsService
-      .getFlights("http://localhost:3000/flights", {})
-      .subscribe({
-        next: (flights: Flights) => {
-          console.log("Received flights:", flights);
-          this.flights = flights;
-        },
-        error: (error) => {
-          console.error("Error fetching flights:", error);
-        },
-        complete: () => {
-          console.log("Flights request completed.");
-          console.log(this.flights);
-        },
-      });
+    console.log(criteria);
+
+    this.searchService.setSearchCriteria(criteria);
+
+    this.flightsService.getOrigins().subscribe((results) => {
+      this.searchService.setSearchResults(results);
+      //this.router.navigate(["/flights"]);
+    });
   }
 }

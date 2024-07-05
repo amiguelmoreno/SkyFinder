@@ -1,0 +1,14 @@
+<mat-form-field class="relative mt-10">
+  <mat-select
+    required
+    [(value)]="selectedClass"
+    (selectionChange)="onSelectionChange($event)"
+  >
+    <mat-option value="tourist">
+      <mat-icon>hail</mat-icon> &nbsp; Tourist
+    </mat-option>
+    <mat-option value="business">
+      <mat-icon>workspace_premium</mat-icon> &nbsp; Business
+    </mat-option>
+  </mat-select>
+</mat-form-field>

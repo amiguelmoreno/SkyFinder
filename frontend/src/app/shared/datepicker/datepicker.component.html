@@ -1,0 +1,31 @@
+<div class="flex gap-6">
+  <mat-form-field class="relative mt-10">
+    <mat-label>Departure Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="departureDatepicker"
+      [(ngModel)]="departureDate"
+      (dateChange)="onDepartureDateSelected($event)"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="departureDatepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #departureDatepicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="relative mt-10">
+    <mat-label>Return Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="returnDatepicker"
+      [(ngModel)]="returnDate"
+      (dateChange)="onReturnDateSelected($event)"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="returnDatepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #returnDatepicker></mat-datepicker>
+  </mat-form-field>
+</div>
