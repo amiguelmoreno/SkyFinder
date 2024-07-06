@@ -1,0 +1,14 @@
+<mat-form-field class="relative mt-10">
+  <mat-select
+    required
+    [(value)]="luggage"
+    (selectionChange)="onSelectionChange($event)"
+  >
+    <mat-option value="luggage">
+      <mat-icon>luggage</mat-icon> &nbsp; With luggage
+    </mat-option>
+    <mat-option value="noluggage">
+      <mat-icon>no_luggage</mat-icon> &nbsp; No luggage
+    </mat-option>
+  </mat-select>
+</mat-form-field>

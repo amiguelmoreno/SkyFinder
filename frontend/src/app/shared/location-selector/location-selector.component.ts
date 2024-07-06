@@ -20,7 +20,7 @@ export class LocationSelectorComponent {
   selectedLocation: string;
 
   constructor(private flightsService: FlightsService) {
-    this.label = "";
+    this.label = "Origin";
     this.locations = [];
     this.selectedLocation = "";
   }

@@ -11,6 +11,7 @@ import { ClassSelectorComponent } from "./class-selector/class-selector.componen
 import { LocationSelectorComponent } from "./location-selector/location-selector.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { SearchButtonComponent } from "./search-button/search-button.component";
+import { LuggageComponent } from "./luggage/luggage.component";
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { SearchButtonComponent } from "./search-button/search-button.component";
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
+    LuggageComponent,
     FlightTypeSelectorComponent,
     PassengerSelectorComponent,
     ClassSelectorComponent,
@@ -33,6 +35,7 @@ import { SearchButtonComponent } from "./search-button/search-button.component";
     PassengerSelectorComponent,
     ClassSelectorComponent,
     LocationSelectorComponent,
+    LuggageComponent,
     DatepickerComponent,
     SearchButtonComponent,
   ],

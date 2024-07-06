@@ -16,6 +16,7 @@ export class HomeComponent {
   selectedClass: string = "tourist";
   selectedOrigin: string = "";
   selectedDestination: string = "";
+  // luggage: string = "noluggage";
 
   locations = [
     { origin: "New York" },
